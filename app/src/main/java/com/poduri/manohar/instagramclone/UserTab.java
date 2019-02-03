@@ -60,7 +60,7 @@ public class UserTab extends Fragment {
                             arrayList.add(user.getUsername());
                         }
                         listView.setAdapter(arrayAdapter);
-                        txtLoadingUsers.animate().alpha(0).setDuration(5000);
+                        txtLoadingUsers.animate().alpha(0).setDuration(2000);
                         listView.setVisibility(View.VISIBLE);
 
                     }
