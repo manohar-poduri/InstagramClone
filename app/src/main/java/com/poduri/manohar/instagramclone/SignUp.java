@@ -66,6 +66,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 if (edtEmail.getText().toString().equals("") || edtUsername.getText().toString().equals("") || edtPassword.getText().toString().equals("")) {
                     FancyToast.makeText(this, "Email, Username, Password is required!", FancyToast.LENGTH_LONG, FancyToast.INFO, true).show();
 
+                    transitionToSocialMediaActivity();
 
 
                 } else {
@@ -122,5 +123,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private void transitionToSocialMediaActivity() {
         Intent intent = new Intent(SignUp.this, SocialMediaActivity.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -80,23 +80,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void done(ParseUser user, ParseException e) {
 
-                            if (user == null && e != null) {
+                            if (user != null && e == null) {
                                 FancyToast.makeText(LoginActivity.this, user.getUsername() + " is logged in success", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
-
                                 transitionToSocialMediaActivity();
 
                             } else {
-                                FancyToast.makeText(LoginActivity.this, "This is an error:" + e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, true).show();
-
+                                FancyToast.makeText(LoginActivity.this,e.getMessage() + "there is an error", FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show();
                             }
-                            progressDialog.dismiss();
-
                         }
                     });
                 }
                 break;
 
+
             case R.id.btnSignUpLoginActivity:
+
+                Intent intent = new Intent(LoginActivity.this,SignUp.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -113,6 +113,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void transitionToSocialMediaActivity() {
         Intent intent = new Intent(LoginActivity.this, SocialMediaActivity.class);
         startActivity(intent);
+        finish();
     }
 
 }

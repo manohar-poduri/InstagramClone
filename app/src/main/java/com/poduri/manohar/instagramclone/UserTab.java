@@ -1,11 +1,13 @@
 package com.poduri.manohar.instagramclone;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,11 +24,11 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserTab extends Fragment {
+public class UserTab extends Fragment implements AdapterView.OnItemClickListener {
 
 
     private ListView listView;
-    private ArrayList arrayList;
+    private ArrayList<String> arrayList;
     private ArrayAdapter arrayAdapter;
 
     public UserTab() {
@@ -44,6 +46,7 @@ public class UserTab extends Fragment {
         arrayList = new ArrayList();
         arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, arrayList);
 
+        listView.setOnItemClickListener(UserTab.this);
         final TextView txtLoadingUsers = view.findViewById(R.id.txtLoadingUsers);
 
         ParseQuery<ParseUser> parseQuery = ParseUser.getQuery();
@@ -72,4 +75,12 @@ public class UserTab extends Fragment {
         return view;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Intent intent = new Intent(getContext(), UsersPosts.class);
+        intent.putExtra("username", arrayList.get(position));
+        startActivity(intent);
+
+    }
 }
